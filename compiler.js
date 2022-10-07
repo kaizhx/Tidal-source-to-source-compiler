@@ -1,4 +1,4 @@
-// This function implements the Tokenizer
+// This function implements the tokenizer
 
 function tokenize(input) {
   let currentPosition = 0;
@@ -6,7 +6,7 @@ function tokenize(input) {
 
   while (currentPosition < input.length) {
     let currentCharacter = input[currentPosition];
-
+    
     const IDENTIFIER_START = /[A-Z]|\$|_/i;
     const IDENTIFIER = /[A-Z]|\$|_|[0-9]/i;
 
@@ -447,7 +447,7 @@ function tokenize(input) {
     currentPosition++;
   }
 
-  // adds bracket types for round brackets
+  // Add bracket types for round brackets
   currentPosition = 0;
   let stack = [];
 
@@ -486,7 +486,7 @@ function tokenize(input) {
   return tokens;
 }
 
-// This function implements the Parser
+// This function implements the parser
 
 function parse(tokens) {
 
@@ -504,6 +504,7 @@ function parse(tokens) {
     }
   }
 
+  // Add a "prev" property to each node that points to the previous node
   function setPreviousProperty(node) {
     if (!node) {
       return;
@@ -1197,6 +1198,7 @@ function parse(tokens) {
     }
   }
 
+  // Driver function for the parser
   function traverse(tokens) {
     const tree = new AbstractSyntaxTree();
     let currentPosition = 0;
@@ -1214,7 +1216,7 @@ function parse(tokens) {
   return traverse(tokens);
 }
 
-// This function implements the Transformer
+// This function implements the transformer
 
 function transform(node) {
 
@@ -1310,6 +1312,7 @@ function transform(node) {
     }
   }
 
+  // Driver function for the transformer
   function traverse(node) {
     if (!node) {
       return;
@@ -1361,7 +1364,7 @@ function transform(node) {
   traverse(node);
 }
 
-// This function implements the Code Generator
+// This function implements the generator
 
 function generate(node) {
   let code = "";
@@ -1435,6 +1438,7 @@ function generate(node) {
     }
   }
 
+  // Driver function for the generator
   function generateCode(node) {
     if (!node) {
       return;
@@ -1545,7 +1549,7 @@ function generate(node) {
   return code;
 }
 
-// Driver function
+// Driver function for the compiler
 function compile(input) {
   let tokens = tokenize(input);
   let abstractSyntaxTree = parse(tokens);
@@ -1579,6 +1583,7 @@ while (a < 100) {
   i = sum(1, 2, 3);
   a = (sum(1, 1, 1) + b) * i;
   console.log("Hello World");
-}`;
+}
+`;
 
 let output = compile(input);
