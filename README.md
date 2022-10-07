@@ -156,18 +156,16 @@ The compiler is made up of the following components:
 * Tokenizer
 * Parser
 * Transformer
-* Code Generator
+* Generator
 
 Given the example input below, let's explore what each of the components is responsible for:
 
 ```javascript
 let a = 5;
 let b = 3;
-let c = 1;
-const fruits = "Apple";
 
-function sum(a, b, c) {
-  return a + b + c;
+function sum(a, b) {
+  return a + b;
 }
 
 if (a > b) {
@@ -179,15 +177,70 @@ if (a > b) {
 
 ### Tokenizer
 
-The tokenizer (implemented by the tokenize() function) iterates through the provided input to create a sequence of tokens - basic syntactic units - which are then stored in an array called "tokens". Each of these tokens is assigned a value and type:
+The tokenizer (implemented by the tokenize function) iterates through the provided input to create a sequence of tokens - basic syntactic units - which are then stored in an array called "tokens". It does so by comparing a string element with a set of regular expressions and assigns it a corresponding value/type. The resulting token is then saved as an object in the token array. The function iterates through the finished token array a few more times afterwards to update generic token types to more specific ones (e.g. changing the token type to "KEYWORD" or "FUNCTION_CALL" instead of "IDENTIFIER"):
+
 
 #### Visualization of token array
 
 https://replit.com/@codexserenity/TidalTokenizerDemo#tokenizer_demo.js (Press the "Run" button to execute the tokenize function)
 
+### Parser
+
+The parser (implemented by the parse function) uses the generated token array to construct an AST, or abstract syntax tree. The AST is a way to represent the abstract syntactic structure of the input text in form of a tree structure. This allows us to specify relations between syntactic units.
+
+It accomplishes this by using several helper functions multiple times while parsing through the token array:
+
+* returnEndPositionOfStatement - Returns the index of the next token in the token array that signalizes the end of a statement; usually a token with value ";" or "}"
+
+We define a node class and instantiate a node object for each element in the token array. A node has the same value/type as the corresponding token  together with an additional "next" property: An array that keeps track of all nodes succeeding that particular node.
+
+* returnStatementAsNode
+  * Takes a sequence of tokens in the token array that make up a statement
+  * Assigns each token a precedence (realized by the function addTokenPrecedence)
+  * Instantiates a node object each representing a token and pushes it to a node array (realized by the function returnExpressionAsNodeArray)
+  * Repeatedly obtains the node with an operator (e.g. "=", "<") as its value that has the highest operator precedence (realized by the function returnMaxPrecedence)
+  * Connects the operator node with the left and right operand node by pushing both to the "next" property of the operator node (realized by the function connectExpressionNodes)
+
+#### Visualization of AST (abstract syntax tree)
+
+https://replit.com/@codexserenity/TidalParserDemo#parser_demo.js (Press the "Run" button to execute the parse function)
+
+### Transformer
+
+The transformer (implemented by the transform function) takes the AST as input and modifies the tree based on the target language (Python). The function usually performs a lot of structural changes to the AST but a lot of programming concepts in JavaScript and Python are structurally quite similar so not much needs to be done in this particular step. For statements are one example when it comes to structural differences:
+
+
+For statements contain up to three expressions in Javascript: Initialization (e.g. let i = 0), condition (e.g. i < 3) and afterthought (e.g. i++). In Python, for statements typically use either specific syntax to loop through entire sequences or the range() function to loop through a set range.
+
+The transform function takes certain parts of the three expressions and maps them to the corresponding parts in Python: 
+* i from initialization expression -> identifier i
+* 0 from initialization expression -> start of range function: range(0, -)
+* 3 from condition expression -> end of range function: range(0, 3)
+* i++ from afterthought expression -> step of range function: range(0, 3, 1) or just range(0, 3)
+
+As a result, the following JavaScript code
+
+```javascript
+for (let i = 0; i < 3; i++) {
+  console.log("Hello World");
+}
+```
+
+compiles to the Python Code
+
+```python
+for i in range(0, 3):
+  print("Hello World")
+```
+
+### Generator
+
+The transformer (implemented by the generate function) performs multiple in-order tree traversals on the modified AST to generate the final output code in Python.
+
+#### Compiled Python code for example JavaScript input
+
+https://replit.com/@codexserenity/TidalCompilerDemo#compiler_demo.js (Press the "Run" button to execute the compiler)
 
 
 
-
-
-
+Please take a look at the source code if you want to learn more about these components and the various helper functions that make up the program!
