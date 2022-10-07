@@ -1582,4 +1582,3 @@ while (a < 100) {
 }`;
 
 let output = compile(input);
-console.log(output);
