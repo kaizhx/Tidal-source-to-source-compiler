@@ -1,6 +1,6 @@
 # Tidal-source-to-source-compiler
 
-A small source-to-source compiler created by /ME/.
+A small source-to-source compiler created by Kai Zhen.
 
 ## Overview
 
