@@ -1,10 +1,10 @@
-# Tidal-source-to-source-compiler
+# Wave-source-to-source-compiler
 
 A small source-to-source compiler created by Kai Zhen.
 
 ## Overview
 
-Tidal is a source-to-source compiler (written completely in JavaScript) that takes JavaScript code and translates it into semantically equivalent Python code.\
+Wave is a source-to-source compiler (written completely in JavaScript) that takes JavaScript code and translates it into semantically equivalent Python code.\
 The program was created as part of an effort to learn and practice various software engineering and algorithmic design principles (e.g. data structures, tree traversal, dynamic programming) by designing and implementing a larger scale application for the first time. Below is the EBNF-based grammar - essentially a subset of the entire JavaScript grammar - that can be understood and processed by the compiler.
 If you're interested to learn how the program was built, head to the "How it works" section to read more about it.
 
@@ -40,7 +40,7 @@ console.log(a);
 
 Please keep in mind that the project in its current form was mainly created for learning purposes and is therefore not completely free of bugs. Although it should support the basic functionality mentioned below, it might not work correctly for some types of input.
 
-Tidal currently supports the following programming concepts:
+Wave currently supports the following programming concepts:
 
 * variable declaration
 * function declaration
@@ -182,7 +182,7 @@ The tokenizer (implemented by the tokenize function) iterates through the provid
 
 #### Visualization of token array
 
-https://replit.com/@codexserenity/TidalTokenizerDemo#tokenizer_demo.js (Press the "Run" button to execute the tokenize function)
+https://replit.com/@codexserenity/WaveTokenizerDemo#tokenizer_demo.js (Press the "Run" button to execute the tokenize function)
 
 ### Parser
 
@@ -203,7 +203,7 @@ We define a node class and instantiate a node object for each element in the tok
 
 #### Visualization of AST (abstract syntax tree)
 
-https://replit.com/@codexserenity/TidalParserDemo#parser_demo.js (Press the "Run" button to execute the parse function)
+https://replit.com/@codexserenity/WaveParserDemo#parser_demo.js (Press the "Run" button to execute the parse function)
 
 ### Transformer
 
@@ -239,7 +239,7 @@ The transformer (implemented by the generate function) performs multiple in-orde
 
 #### Compiled Python code for example JavaScript input
 
-https://replit.com/@codexserenity/TidalCompilerDemo#compiler_demo.js (Press the "Run" button to execute the compiler)
+https://replit.com/@codexserenity/WaveCompilerDemo#compiler_demo.js (Press the "Run" button to execute the compiler)
 
 
 
