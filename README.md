@@ -2,6 +2,11 @@
 
 A small source-to-source compiler created by Kai Zhen.
 
+Demo Page:
+
+https://kaizhx.github.io \
+(Please read the disclaimer under the "Functionality" section before you try the compiler out)
+
 ## Overview
 
 Wave is a source-to-source compiler (written completely in JavaScript) that takes JavaScript code and translates it into semantically equivalent Python code.\
@@ -10,7 +15,8 @@ If you're interested to learn how the program was built, head to the "How it wor
 
 ## Functionality
 
-**Disclaimer: The program uses the semicolon symbol (" ; ") to identify the end of a statement and curly brackets (" { ", &nbsp;" } ") for a block of statements. Note that these symbols cannot be omitted:**
+**Disclaimer: Please keep in mind that the project in its current form was mainly created for learning purposes and is therefore not completely free of bugs. Although it should support the basic functionality mentioned below, it might not work correctly for some types of input. \
+The program uses the semicolon symbol (" ; ") to identify the end of a statement and curly brackets (" { ", &nbsp;" } ") for a block of statements. Note that these symbols cannot be omitted:**
 
 ```javascript
 // The if-statement
@@ -37,8 +43,6 @@ console.log("Apple");
 console.log(a);
 
 ```
-
-Please keep in mind that the project in its current form was mainly created for learning purposes and is therefore not completely free of bugs. Although it should support the basic functionality mentioned below, it might not work correctly for some types of input.
 
 Wave currently supports the following programming concepts:
 
