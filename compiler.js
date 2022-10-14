@@ -1558,32 +1558,3 @@ function compile(input) {
 
   return output;
 }
-
-let input = `
-let a = 5;
-let b = 3;
-const fruits = "Apple";
-const veggies = (a + b) * c;
-function sum(a, b, c) {
-  return a + b + c;
-}
-if (a > b) {
-  return a;
-} else if (a < b) {
-  return b;
-} else {
-  return false;
-}
-for (let i = 0; i < 3; i++) {
-  let a = i;
-}
-while (a < 100) {
-  a *= 2;
-  a++;
-  i = sum(1, 2, 3);
-  a = (sum(1, 1, 1) + b) * i;
-  console.log("Hello World");
-}
-`;
-
-let output = compile(input);
