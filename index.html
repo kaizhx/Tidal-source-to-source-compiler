@@ -12,9 +12,16 @@
   <script src="./script.js"></script>
   <div class="codeinput">
     <h1>Wave</h1>
-    <p>Wave is a source-to-source compiler that translates basic JavaScript code into semantically equivalent Python code</p>
+    <p><strong>Wave is a source-to-source compiler that translates basic JavaScript code into semantically equivalent Python code</strong></p>
     <textarea id="textareabox" name="textarea1" placeholder="Type your JavaScript code here..." required rows="20" cols="50"></textarea>
-    <input type="button" value="Compile" onclick="getText()"/>
+    <div id="container">
+      <button class="compile" onclick="getText()">
+        <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">Compile</span>
+      </button>
+    </div>
   </div>
 </body>
 
