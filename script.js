@@ -12,7 +12,7 @@ function tokenize(input) {
 
   while (currentPosition < input.length) {
     let currentCharacter = input[currentPosition];
-    
+
     const IDENTIFIER_START = /[A-Z]|\$|_/i;
     const IDENTIFIER = /[A-Z]|\$|_|[0-9]/i;
 
@@ -1162,7 +1162,7 @@ function parse(tokens) {
         return ifStatementNode;
       }
       while (pointer < endIndex) {
-        if (tokens[pointer + 1].value === "else" && tokens[pointer + 2].value === "if") {
+        if (tokens[pointer + 1].value && tokens[pointer + 1].value === "else" && tokens[pointer + 2].value === "if") {
           let elseIfStatementNode = new Node("ELSE_IF_STATEMENT", "DESCRIPTION");
           ifStatementNode.next.push(elseIfStatementNode);
           startOfCondition = pointer + 3;
@@ -1183,8 +1183,11 @@ function parse(tokens) {
             endOfStatement = returnEndPositionOfStatement(tokens, pointer);
           }
           pointer = endOfifBody;
+          if (pointer === tokens.length - 1 || tokens[pointer + 1].value !== "else") {
+        return ifStatementNode;
+      }
         }
-        if (tokens[pointer + 1].value === "else" && tokens[pointer + 2].value !== "if") {
+        if (tokens[pointer + 1] && tokens[pointer + 1].value === "else" && tokens[pointer + 2].value !== "if") {
           let elseStatementNode = new Node("ELSE_STATEMENT", "DESCRIPTION");
           ifStatementNode.next.push(elseStatementNode);
           pointer += 2;
@@ -1209,6 +1212,7 @@ function parse(tokens) {
     const tree = new AbstractSyntaxTree();
     let currentPosition = 0;
     let endOfStatement = returnEndPositionOfStatement(tokens, currentPosition);
+    console.log(endOfStatement);
     while (currentPosition < tokens.length) {
       tree.root.next.push(returnStatementAsNode(tokens, currentPosition, endOfStatement));
       currentPosition = endOfStatement + 1;
@@ -1358,6 +1362,8 @@ function transform(node) {
           currentNode.next[2] = new Node(stepCount, "STEP_COUNT");
           currentNode.next[2].prev = currentNode;
         }
+      } else if (currentNode.value === "===" || currentNode.value === "!==") {
+        currentNode.value = currentNode.value.slice(0, 2);
       }
 
       for (let i = 0; i < node.next.length; i++) {
