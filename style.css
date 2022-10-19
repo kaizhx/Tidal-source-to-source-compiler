@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(255, 199, 128, 0.8);
+  font-family: "Open Sans", Arial;
+}
+
+.codeinput {
+  text-align: center;
+}
+
+textarea {
+  font-size: 17px;
+}
