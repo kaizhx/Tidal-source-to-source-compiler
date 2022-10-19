@@ -4,6 +4,8 @@ function getText() {
   document.getElementById("textareabox").value = output;
 }
 
+// Compiler implementation
+
 // This function implements the tokenizer
 
 function tokenize(input) {
