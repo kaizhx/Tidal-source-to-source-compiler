@@ -4,6 +4,10 @@ function getText() {
   document.getElementById("textareabox").value = output;
 }
 
+function clearText() {
+  document.getElementById("textareabox").value = "";
+}
+
 // Compiler implementation
 
 // This function implements the tokenizer
