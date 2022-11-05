@@ -7,7 +7,7 @@ Demo Page:
 https://kaizhx.github.io/Wave-source-to-source-compiler \
 (Please read the disclaimer under the "Functionality" section before you try the compiler out)
 
-Button by Katherine Kato (https://codepen.io/kathykato/pen/rZRaNe)
+Button Design by Katherine Kato (https://codepen.io/kathykato/pen/rZRaNe)
 
 
 ## Overview
