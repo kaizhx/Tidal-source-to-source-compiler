@@ -11,9 +11,15 @@
 <body>
   <div class="codeinput">
     <h1>Wave</h1>
-    <p><strong>Wave is a source-to-source compiler that translates basic JavaScript code into semantically equivalent Python code</strong></p>
+    <p><strong>Wave is a source-to-source compiler that translates basic JavaScript code into semantically equivalent Python code<br><br>Note: Wave only supports basic statements (e.g. conditional statements, loops, function/variable declarations). Please refer to the 'Functionality' and 'Examples' sections on GitHub for further details.</strong></p>
     <textarea id="textareabox" name="textarea1" placeholder="Type your JavaScript code here..." required rows="20" cols="50"></textarea>
     <div id="container">
+      <button class="compile" onclick="clearText()">
+        <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">Clear</span>
+      </button>
       <button class="compile" onclick="getText()">
         <span class="circle" aria-hidden="true">
           <span class="icon arrow"></span>
