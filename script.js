@@ -4,31 +4,6 @@ function getText() {
   document.getElementById("textareabox").value = output;
 }
 
-const textArea = document.getElementById("textareabox");
-textArea.addEventListener("keydown", function(e) {
-  if (e.key === "{" || e.key === '"' || e.key === "(" || e.key === "'") {
-    modifyText(e);
-  }
-});
-
-function modifyText(e) {
-  let currentCharacter = e.key;
-  let output = document.getElementById("textareabox").value;
-  if (currentCharacter === "{") {
-    output = output.concat('{}');
-    event.preventDefault();
-  } else if (currentCharacter === '"') {
-    output = output.concat('"');
-  } else if (currentCharacter === '(') {
-    output = output.concat('()');
-    event.preventDefault();
-  } else if (currentCharacter === "'") {
-    output = output.concat("'");
-  } 
-  
-  document.getElementById("textareabox").value = output;
-}
-
 // Compiler implementation
 
 // This function implements the tokenizer
